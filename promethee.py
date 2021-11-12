@@ -102,6 +102,7 @@ class Promethee:
 
     def sorted_devs(self, mp, net_flow):
         devs_matrix = self.get_devs(mp)
+        print('----------------',devs_matrix)
         num_devs = net_flow.shape[0]
         devs_dict = {}
         for i in range(num_devs):
@@ -119,11 +120,12 @@ if __name__ == '__main__':
                    ["Weights", 0.2, 0.5, 0.3],
                    ["Dev1", 3, 4, 3],
                    ["Dev2", 2, 4, 0],
-                   ["Dev3", 5, 9, 4],
+                   ["Dev3", 5, 10, 4],
                    ["Dev4", 2, 10, 2],
                    ["Dev5", 4, 5, 0],
                    ["Dev6", 1, 1, 0],
-                   ["Dev7", 5, 10, 2]])
+                   ["Dev7", 5, 10, 3]
+                   ])
 
     # mp1 = np.array([["Actions", "Critère 1", "Critère 2", "Critère 3", "Critère 4", "Critère 5", "Critère 6"],
     #                ["Weights", 0.2336, 0.1652, 0.3355, 0.1021, 0.0424, 0.1212],
@@ -136,17 +138,17 @@ if __name__ == '__main__':
     mp_brut_float = promethee.get_brut_matrix(mp)
     print("===============================================================")
     print("Brut Matrix")
-    print(mp_brut_float)
+    # print(mp_brut_float)
 
     print("===============================================================")
     print("Normalized Matrix")
     normal_matrix = promethee.get_normalized_matrix(mp_brut_float)
-    print(normal_matrix)
+    # print(normal_matrix)
 
     print("===============================================================")
     print("Pairwise Matrix")
     pairwise_matrix = promethee.pairwise_comp_matrix(normal_matrix)
-    print(pairwise_matrix)
+    # print(pairwise_matrix)
 
     print("===============================================================")
     print("Preference func Martix")
@@ -157,34 +159,34 @@ if __name__ == '__main__':
     print("Preference func Martix with weights")
     preference_func_martix_weights = promethee.preference_func_array_weights(
         preference_func_martix, mp)
-    print(preference_func_martix_weights)
+    # print(preference_func_martix_weights)
 
     print("===============================================================")
     print("Sum Preference func Martix with weights Rows")
     sum_preference_matrix_weights_rows = promethee.sum_preference_matrix_weights_rows(
         preference_func_martix_weights)
-    print(sum_preference_matrix_weights_rows)
+    # print(sum_preference_matrix_weights_rows)
 
     print("===============================================================")
     print("Sum Preference Martix Squared")
     squared = promethee.squar_pref_index(
         mp_brut_float, sum_preference_matrix_weights_rows)
-    print(squared)
+    # print(squared)
 
     print("===============================================================")
     print("Positif Flow")
     pos_flow = promethee.pos_flow(squared)
-    print(pos_flow)
+    # print(pos_flow)
 
     print("===============================================================")
     print("Negatif Flow")
     neg_flow = promethee.neg_flow(squared)
-    print(neg_flow)
+    # print(neg_flow)
 
     print("===============================================================")
     print("Net Flow")
     net_flow = promethee.net_flow(pos_flow, neg_flow)
-    print(net_flow)
+    # print(net_flow)
 
     print("===============================================================")
     print("Sorted Developpers")
